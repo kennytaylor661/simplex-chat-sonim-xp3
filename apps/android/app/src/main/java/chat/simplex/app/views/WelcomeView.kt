@@ -35,7 +35,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 fun isValidDisplayName(name: String) : Boolean {
-  return (name.firstOrNull { it.isWhitespace() }) == null && !name.startsWith("@") && !name.startsWith("#")
+  // name.firstOrNull {it.isWhitespace()} misbehaves on Sonim XP3, returning a nonzero result code when no spaces are present
+  //return (name.firstOrNull { it.isWhitespace() }) == null && !name.startsWith("@") && !name.startsWith("#")
+  return !name.startsWith("@") && !name.startsWith("#")
 }
 
 @Composable
